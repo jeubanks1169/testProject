@@ -1,0 +1,58 @@
+<script>
+    //Question Number 1
+    console.log(`Question Number 1:  Print the number of integers in an array that are above the given input and the number that are below, e.g. for the array [1, 5, 2, 1, 10] with input 6, print "above: 1, below: 4"`)
+
+    const array = [1, 5, 2, 1, 10]
+    const inputThreshold = 6
+    /**
+     * Returns a string in the format "above: #, below: #" based on the number of integers in an array that are above and below the given input threshold
+     * @param  {Array}  array          The array of integers
+     * @param  {Number} inputThreshold The input threshold
+     * @return {String}                The counts above and below
+     * Implementation using reduce
+     */
+    const aboveAndBelow = (array, inputThreshold) => {
+        // Count the number of integers above the threshold using reduce to check each element
+        const above = array.reduce(
+            (accumulator, currentValue) =>
+                    // Add 1 to the accumulator if the value is above the input threshold
+                    currentValue > inputThreshold ? (accumulator += 1) : accumulator,
+                    0
+        )
+        // Count the number of integers below the threshold using reduce to check each element
+        const below = array.reduce(
+            (accumulator, currentValue) =>
+                    // Add 1 to the accumulator if the value is below the input threshold
+                    currentValue < inputThreshold ? (accumulator += 1) : accumulator,
+                    0
+        )
+        return `above: ${above}, below: ${below}`
+    }
+
+    console.log(`*** Implementation using reduce ***
+    aboveAndBelow([${array}], ${inputThreshold})
+    Result: "${aboveAndBelow(array, inputThreshold)}"`)
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Question Number 2
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    console.log(`Question 2: Rotate the characters in a string by a given input and have the overflow appear at the beginning, e.g. “MyString” rotated by 2 is “ngMyStri”.`)
+
+    /**
+     * Returns the input string rotated by the specified number of characters, with the overflow appearing at the beginning.
+     * @param  {Array}  [inputString = ""]      The string to be rotated
+     * @param  {Number} [howManyCharacters = 0] How far to rotate
+     * @return {String}                         The rotated string
+     */
+    const rotateString = (inputString = "", howManyCharacters = 0) => {
+        // Optional type checking:
+        // if (inputString == null || typeof inputString !== "string") return "";
+        const length = inputString.length
+        const overflow = inputString.substring(howManyCharacters, length)
+        const remainder = inputString.substring(0, howManyCharacters)
+        const rotatedString = overflow + remainder
+        return rotatedString
+    }
+    console.log(`*** Basic function ***
+    rotateString("MyString", 3)
+    Result: "${rotateString("MyString", 3)}"`)
+</script>
